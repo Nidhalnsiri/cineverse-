@@ -1,0 +1,24 @@
+# Backend (Java / Spring)
+cineverse-backend/target/
+cineverse-backend/.classpath
+cineverse-backend/.project
+cineverse-backend/.settings/
+cineverse-backend/*.iml
+cineverse-backend/.idea/
+
+# Frontend (Node / Vite)
+cineverse-frontend/node_modules/
+cineverse-frontend/dist/
+cineverse-frontend/.env
+cineverse-frontend/.env.local
+
+# Secrets — ne jamais publier
+**/.env
+**/application-local.yml
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+*.log
+.vscode/
+!.vscode/extensions.json

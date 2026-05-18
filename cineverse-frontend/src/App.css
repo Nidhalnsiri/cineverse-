@@ -1,0 +1,212 @@
+/* ─── NAVBAR ─────────────────────────────────── */
+.navbar {
+  position: fixed; top: 0; width: 100%; padding: 18px 60px;
+  display: flex; justify-content: space-between; align-items: center;
+  z-index: 1000; transition: var(--transition);
+  background: linear-gradient(to bottom, rgba(10,10,15,0.95) 0%, transparent 100%);
+}
+.navbar-scrolled { background: rgba(10,10,15,0.97); box-shadow: 0 1px 0 var(--border-glass); backdrop-filter: blur(20px); }
+.navbar-logo { font-size: 1.8rem; font-weight: 900; color: var(--primary); letter-spacing: 3px; cursor: pointer; }
+.navbar-links { list-style: none; display: flex; gap: 35px; }
+.navbar-links a { font-weight: 500; font-size: 0.95rem; color: var(--text-muted); transition: var(--transition); }
+.navbar-links a:hover { color: var(--text); }
+.navbar-user { display: flex; align-items: center; gap: 15px; }
+.navbar-username { font-weight: 600; font-size: 0.9rem; color: var(--text); }
+.login-btn { background: transparent; border: 1px solid rgba(255,255,255,0.2); color: var(--text); padding: 9px 22px; border-radius: 50px; font-weight: 600; font-size: 0.9rem; cursor: pointer; transition: var(--transition); }
+.login-btn:hover { background: var(--bg-glass); border-color: rgba(255,255,255,0.4); }
+.logout-btn { background: transparent; border: none; color: var(--text-muted); font-size: 0.9rem; cursor: pointer; transition: var(--transition); padding: 5px 0; }
+.logout-btn:hover { color: var(--primary); }
+
+/* ─── HERO ───────────────────────────────────── */
+.hero { position: relative; height: 100vh; background-size: cover; background-position: center 20%; display: flex; align-items: center; }
+.hero-overlay { position: absolute; inset: 0; background: linear-gradient(105deg, rgba(10,10,15,0.95) 0%, rgba(10,10,15,0.6) 50%, rgba(10,10,15,0.2) 100%), linear-gradient(to top, rgba(10,10,15,1) 0%, transparent 30%); }
+.hero-content { position: relative; z-index: 10; max-width: 650px; padding: 0 60px; }
+.hero-badge { display: inline-flex; align-items: center; gap: 8px; background: var(--primary); padding: 6px 14px; border-radius: 50px; font-size: 0.78rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 22px; }
+.hero-title { font-size: 4rem; font-weight: 900; line-height: 1.05; margin-bottom: 18px; letter-spacing: -1px; }
+.hero-subtitle { font-size: 1.1rem; color: var(--text-muted); margin-bottom: 40px; line-height: 1.7; }
+.hero-meta { display: flex; gap: 20px; align-items: center; margin-bottom: 35px; }
+.hero-meta span { font-size: 0.9rem; color: var(--text-muted); display: flex; align-items: center; gap: 6px; }
+.hero-rating { color: var(--gold) !important; font-weight: 700 !important; }
+.hero-buttons { display: flex; gap: 15px; flex-wrap: wrap; }
+
+/* ─── BUTTONS ────────────────────────────────── */
+.btn-primary { background: var(--primary); color: white; border: none; padding: 14px 32px; font-size: 1rem; font-weight: 700; border-radius: 50px; cursor: pointer; transition: var(--transition); display: inline-flex; align-items: center; gap: 10px; }
+.btn-primary:hover { background: var(--primary-dark); transform: translateY(-2px); box-shadow: 0 8px 25px var(--primary-glow); }
+.btn-secondary { background: var(--bg-glass); color: white; border: 1px solid var(--border-glass); padding: 14px 32px; font-size: 1rem; font-weight: 600; border-radius: 50px; cursor: pointer; transition: var(--transition); display: inline-flex; align-items: center; gap: 10px; backdrop-filter: blur(10px); }
+.btn-secondary:hover { background: var(--bg-glass-hover); transform: translateY(-2px); }
+.btn-circle { width: 50px; height: 50px; border-radius: 50%; background: var(--bg-glass); border: 2px solid rgba(255,255,255,0.3); color: white; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: var(--transition); backdrop-filter: blur(10px); }
+.btn-circle:hover { background: var(--bg-glass-hover); border-color: rgba(255,255,255,0.6); transform: scale(1.1); }
+
+/* ─── SECTIONS ───────────────────────────────── */
+.movies-section { padding: 20px 60px 60px; position: relative; z-index: 10; margin-top: -120px; }
+.section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
+.section-title { font-size: 1.6rem; font-weight: 800; letter-spacing: -0.5px; }
+.section-link { color: var(--text-muted); font-size: 0.9rem; transition: var(--transition); }
+.section-link:hover { color: var(--primary); }
+
+/* ─── MOVIE CARD ─────────────────────────────── */
+.movies-row { display: flex; gap: 18px; overflow-x: auto; padding-bottom: 15px; scrollbar-width: none; }
+.movies-row::-webkit-scrollbar { display: none; }
+.movie-card { min-width: 220px; position: relative; border-radius: var(--radius); overflow: hidden; transition: var(--transition); cursor: pointer; box-shadow: var(--shadow-card); background: var(--bg-card); }
+.movie-card:hover { transform: scale(1.06) translateY(-8px); box-shadow: 0 20px 60px rgba(0,0,0,0.8), 0 0 30px var(--primary-glow); z-index: 20; }
+.movie-poster { width: 100%; height: 330px; object-fit: cover; display: block; }
+.movie-info { position: absolute; bottom: 0; left: 0; width: 100%; background: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 50%, transparent 100%); padding: 50px 16px 16px; opacity: 0; transition: var(--transition); }
+.movie-card:hover .movie-info { opacity: 1; }
+.movie-info h3 { font-size: 1rem; font-weight: 700; margin-bottom: 6px; }
+.movie-info p { font-size: 0.8rem; color: var(--text-muted); }
+.book-btn { margin-top: 10px; width: 100%; display: block; text-align: center; background: var(--primary); color: white; border: none; padding: 8px; border-radius: 6px; font-weight: 700; font-size: 0.85rem; cursor: pointer; transition: var(--transition); }
+.book-btn:hover { background: white; color: var(--primary); }
+.poster-fallback { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; background: var(--bg-card); color: var(--text-muted); min-height: 330px; padding: 20px; text-align: center; }
+.poster-fallback span { font-size: 0.85rem; font-weight: 600; }
+.btn-watchlist-active { border-color: var(--primary) !important; color: var(--primary) !important; }
+.details-poster-img { width: 100%; border-radius: var(--radius-lg); display: block; }
+
+/* ─── MOVIES GRID PAGE ───────────────────────── */
+.movies-page { padding: 110px 60px 60px; min-height: 100vh; }
+.movies-page h1 { font-size: 2.5rem; font-weight: 900; margin-bottom: 10px; letter-spacing: -1px; }
+.movies-filters { display: flex; gap: 12px; margin-bottom: 40px; flex-wrap: wrap; margin-top: 20px; }
+.filter-btn { background: var(--bg-glass); border: 1px solid var(--border-glass); color: var(--text-muted); padding: 8px 20px; border-radius: 50px; font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: var(--transition); }
+.filter-btn:hover, .filter-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
+.movies-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 25px; }
+
+/* ─── MOVIE DETAILS ──────────────────────────── */
+.movie-details-page { min-height: 100vh; }
+.backdrop-container { min-height: 100vh; background-size: cover; background-position: center top; display: flex; align-items: flex-end; padding-bottom: 60px; position: relative; }
+.backdrop-overlay { position: absolute; inset: 0; background: linear-gradient(to right, rgba(10,10,15,0.98) 0%, rgba(10,10,15,0.7) 55%, rgba(10,10,15,0.1) 100%), linear-gradient(to top, rgba(10,10,15,1) 0%, transparent 40%); }
+.details-layout { position: relative; z-index: 10; display: flex; gap: 60px; align-items: flex-end; padding: 0 60px; width: 100%; }
+.details-poster { width: 280px; min-width: 280px; border-radius: var(--radius-lg); overflow: hidden; box-shadow: 0 30px 60px rgba(0,0,0,0.8), 0 0 0 1px var(--border-glass); }
+.details-poster img { width: 100%; display: block; }
+.details-content { flex: 1; padding-bottom: 10px; }
+.movie-badges { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 16px; }
+.badge { padding: 5px 13px; border-radius: 50px; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.5px; }
+.badge-age { background: var(--primary); color: white; }
+.badge-genre { background: var(--bg-glass); border: 1px solid var(--border-glass); color: var(--text-muted); }
+.details-title { font-size: 3.2rem; font-weight: 900; line-height: 1.05; margin-bottom: 16px; letter-spacing: -1.5px; }
+.details-meta { display: flex; gap: 25px; margin-bottom: 24px; flex-wrap: wrap; }
+.details-meta span { display: flex; align-items: center; gap: 8px; font-size: 0.9rem; color: var(--text-muted); }
+.rating-star { color: var(--gold); font-weight: 800; font-size: 1rem; }
+.details-description { font-size: 1rem; color: var(--text-muted); line-height: 1.8; max-width: 600px; margin-bottom: 30px; }
+.details-cast { font-size: 0.85rem; color: var(--text-dim); margin-bottom: 30px; }
+.details-cast strong { color: var(--text-muted); }
+.details-actions { display: flex; gap: 15px; flex-wrap: wrap; }
+
+/* ─── SESSIONS ───────────────────────────────── */
+.sessions-section { padding: 50px 60px; }
+.sessions-section h2 { font-size: 1.5rem; font-weight: 800; margin-bottom: 25px; display: flex; align-items: center; gap: 12px; }
+.sessions-section h2::after { content: ''; flex: 1; height: 1px; background: var(--border-glass); }
+.sessions-grid { display: flex; gap: 15px; flex-wrap: wrap; }
+.session-card { background: var(--bg-card); border: 1px solid var(--border-glass); border-radius: var(--radius); padding: 20px 24px; cursor: pointer; transition: var(--transition); display: flex; flex-direction: column; gap: 8px; min-width: 160px; }
+.session-card:hover, .session-card-hover:hover { background: var(--primary); border-color: var(--primary); transform: translateY(-4px); box-shadow: 0 12px 30px var(--primary-glow); }
+.session-time { font-size: 1.5rem; font-weight: 800; letter-spacing: -0.5px; }
+.session-type { font-size: 0.8rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+.session-lang { font-size: 0.75rem; color: var(--text-dim); }
+.session-price { font-size: 0.85rem; font-weight: 700; color: var(--gold); }
+
+/* ─── BOOKING ────────────────────────────────── */
+.booking-page { padding: 110px 40px 60px; min-height: 100vh; display: flex; flex-direction: column; align-items: center; }
+.booking-page h1 { font-size: 2.2rem; font-weight: 900; margin-bottom: 8px; text-align: center; }
+.booking-subtitle { color: var(--text-muted); margin-bottom: 50px; text-align: center; }
+.cinema-screen { width: 85%; max-width: 750px; height: 60px; background: linear-gradient(to bottom, rgba(200,200,200,0.12), transparent); border-top: 3px solid rgba(255,255,255,0.3); border-radius: 50% 50% 0 0 / 20px 20px 0 0; display: flex; justify-content: center; align-items: flex-start; padding-top: 12px; margin-bottom: 55px; }
+.cinema-screen span { font-size: 0.7rem; letter-spacing: 8px; color: var(--text-dim); font-weight: 600; text-transform: uppercase; }
+.seats-container { display: flex; flex-direction: column; gap: 12px; margin-bottom: 45px; }
+.seat-row { display: flex; gap: 8px; align-items: center; }
+.row-label { width: 28px; font-size: 0.75rem; font-weight: 700; color: var(--text-dim); text-align: center; }
+.seat { width: 38px; height: 38px; display: flex; justify-content: center; align-items: center; border-radius: 8px 8px 4px 4px; cursor: pointer; transition: var(--transition); border: 1px solid transparent; }
+.seat-available { color: rgba(255,255,255,0.5); border-color: rgba(255,255,255,0.15); }
+.seat-available:hover { color: white; border-color: white; transform: scale(1.15); }
+.seat-vip { color: var(--gold); border-color: rgba(245,197,24,0.3); }
+.seat-vip:hover { border-color: var(--gold); transform: scale(1.15); }
+.seat-occupied { color: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.05); cursor: not-allowed; }
+.seat-selected { color: var(--primary); border-color: var(--primary); background: var(--primary-glow); transform: scale(1.1); }
+.legend { display: flex; gap: 25px; margin-bottom: 45px; background: var(--bg-card); padding: 15px 28px; border-radius: 50px; border: 1px solid var(--border-glass); flex-wrap: wrap; justify-content: center; }
+.legend-item { display: flex; align-items: center; gap: 8px; font-size: 0.8rem; color: var(--text-muted); }
+.booking-summary { background: var(--bg-card); padding: 30px; border-radius: var(--radius-lg); width: 100%; max-width: 560px; border: 1px solid var(--border-glass); }
+.booking-summary h2 { font-size: 1.3rem; font-weight: 800; margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid var(--border-glass); }
+.summary-row { display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 0.95rem; }
+.summary-total { display: flex; justify-content: space-between; font-size: 1.3rem; font-weight: 800; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border-glass); }
+.pay-btn { width: 100%; margin-top: 22px; padding: 16px; background: var(--primary); color: white; border: none; border-radius: 50px; font-size: 1rem; font-weight: 700; cursor: pointer; transition: var(--transition); }
+.pay-btn:hover { background: var(--primary-dark); box-shadow: 0 8px 25px var(--primary-glow); }
+
+/* ─── AUTH PAGES ─────────────────────────────── */
+.auth-page { min-height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; background-size: cover; background-position: center; }
+.auth-overlay { position: absolute; inset: 0; background: rgba(10,10,15,0.75); backdrop-filter: blur(3px); }
+.auth-card { position: relative; z-index: 10; background: rgba(15,15,22,0.92); border: 1px solid var(--border-glass); padding: 50px; border-radius: var(--radius-lg); width: 100%; max-width: 440px; backdrop-filter: blur(20px); box-shadow: var(--shadow); }
+.auth-logo { font-size: 1.5rem; font-weight: 900; color: var(--primary); letter-spacing: 2px; margin-bottom: 30px; }
+.auth-title { font-size: 2rem; font-weight: 800; margin-bottom: 8px; }
+.auth-sub { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 32px; }
+.auth-form { display: flex; flex-direction: column; gap: 14px; }
+.form-group { display: flex; flex-direction: column; gap: 7px; }
+.form-group label { font-size: 0.8rem; font-weight: 600; color: var(--text-muted); letter-spacing: 0.5px; text-transform: uppercase; }
+.form-input { padding: 14px 18px; border-radius: var(--radius-sm); border: 1px solid var(--border-glass); background: rgba(255,255,255,0.05); color: white; font-size: 1rem; font-family: 'Inter', sans-serif; transition: var(--transition); }
+.form-input:focus { outline: none; border-color: var(--primary); background: rgba(255,255,255,0.08); }
+.form-input::placeholder { color: var(--text-dim); }
+.auth-error { background: rgba(229,9,20,0.15); border: 1px solid rgba(229,9,20,0.4); color: #ff6b6b; padding: 12px 16px; border-radius: var(--radius-sm); font-size: 0.9rem; }
+.auth-success { background: rgba(16,185,129,0.15); border: 1px solid rgba(16,185,129,0.4); color: #6ee7b7; padding: 12px 16px; border-radius: var(--radius-sm); font-size: 0.9rem; }
+.auth-submit { margin-top: 10px; padding: 15px; background: var(--primary); color: white; border: none; border-radius: 50px; font-size: 1rem; font-weight: 700; cursor: pointer; transition: var(--transition); font-family: 'Inter', sans-serif; }
+.auth-submit:hover { background: var(--primary-dark); box-shadow: 0 8px 25px var(--primary-glow); }
+.auth-submit:disabled { opacity: 0.6; cursor: not-allowed; }
+.auth-footer { margin-top: 28px; text-align: center; font-size: 0.9rem; color: var(--text-dim); }
+.auth-footer a { color: var(--text); font-weight: 600; }
+.auth-footer a:hover { color: var(--primary); }
+
+/* ─── MODAL ──────────────────────────────────── */
+.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); z-index: 9999; display: flex; align-items: center; justify-content: center; animation: fadeIn 0.2s ease; }
+.modal-content { width: 90%; max-width: 860px; aspect-ratio: 16/9; border-radius: var(--radius-lg); overflow: hidden; box-shadow: 0 40px 80px rgba(0,0,0,0.9); position: relative; }
+.modal-close { position: absolute; top: -45px; right: 0; background: none; border: none; color: white; font-size: 1.8rem; cursor: pointer; opacity: 0.7; transition: var(--transition); }
+.modal-close:hover { opacity: 1; transform: scale(1.2); }
+.modal-content iframe { width: 100%; height: 100%; border: none; }
+
+/* ─── LOADING / EMPTY ────────────────────────── */
+.page-loader { display: flex; align-items: center; justify-content: center; min-height: 100vh; }
+.loader-ring { width: 50px; height: 50px; border: 3px solid var(--border-glass); border-top-color: var(--primary); border-radius: 50%; animation: spin 0.8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+.animate-up { animation: slideUp 0.5s ease forwards; }
+
+/* ─── CINEMAS PAGE ───────────────────────────── */
+.cinemas-page { padding: 100px 40px 80px; min-height: 100vh; max-width: 1400px; margin: 0 auto; }
+.cinemas-hero { text-align: center; margin-bottom: 36px; }
+.cinemas-hero h1 { font-size: 2.6rem; font-weight: 900; display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 12px; }
+.cinemas-hero p { color: var(--text-muted); font-size: 1.05rem; }
+.cinemas-stats { display: flex; gap: 24px; justify-content: center; margin-top: 20px; color: var(--text-muted); font-size: 0.9rem; }
+.cinemas-stats span { display: flex; align-items: center; gap: 6px; }
+.cinemas-error { max-width: 600px; margin: 0 auto 24px; text-align: center; }
+.city-filters { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 40px; }
+.city-chip { padding: 10px 20px; border-radius: 50px; border: 1px solid var(--border-glass); background: var(--bg-card); color: var(--text-muted); font-weight: 600; font-size: 0.85rem; cursor: pointer; transition: var(--transition); }
+.city-chip:hover { border-color: var(--primary); color: white; }
+.city-chip-active { background: var(--primary); border-color: var(--primary); color: white; }
+.cinemas-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 28px; }
+.cinema-card { background: var(--bg-card); border: 1px solid var(--border-glass); border-radius: var(--radius-lg); overflow: hidden; transition: var(--transition); }
+.cinema-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(0,0,0,0.5); border-color: rgba(229,9,20,0.3); }
+.cinema-card-image { position: relative; height: 200px; overflow: hidden; background: #1a1a22; }
+.cinema-card-image img,
+.cinema-card-image .cinema-image-fallback { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; display: block; }
+.cinema-image-fallback { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; color: var(--text-muted); background: linear-gradient(135deg, #1a1a22, #2a1520); }
+.cinema-image-fallback span { font-size: 0.8rem; font-weight: 600; text-align: center; padding: 0 12px; }
+.booking-cinema-info { text-align: center; color: var(--text-muted); margin: -30px 0 35px; font-size: 0.95rem; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 8px; }
+.booking-cinema-info strong { color: var(--primary); }
+.booking-cinema-address { display: inline-flex; align-items: center; gap: 4px; margin-left: 8px; opacity: 0.85; }
+.ticket-confirm { text-align: center; max-width: 520px; margin: 0 auto; animation: slideUp 0.5s ease; }
+.ticket-confirm h1 { font-size: 2.2rem; margin-bottom: 12px; }
+.ticket-movie { color: var(--text-muted); margin-bottom: 8px; }
+.ticket-cinema { color: var(--primary); font-weight: 700; font-size: 1.15rem; margin-bottom: 10px; display: flex; align-items: center; justify-content: center; gap: 8px; flex-wrap: wrap; }
+.ticket-cinema span { color: var(--text-muted); font-weight: 500; }
+.ticket-address { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 12px; display: flex; align-items: center; justify-content: center; gap: 6px; }
+.ticket-meta, .ticket-seats { color: var(--text-muted); margin-bottom: 8px; }
+.ticket-seats strong { color: white; }
+.ticket-total { color: var(--text-muted); margin-bottom: 32px; }
+.ticket-total strong { color: var(--gold); font-size: 1.3rem; }
+.ticket-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.cinema-card:hover .cinema-card-image img { transform: scale(1.05); }
+.cinema-brand { position: absolute; top: 12px; left: 12px; background: var(--primary); color: white; padding: 5px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 800; letter-spacing: 0.5px; }
+.cinema-city-badge { position: absolute; top: 12px; right: 12px; background: rgba(0,0,0,0.75); backdrop-filter: blur(8px); color: white; padding: 5px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 600; }
+.cinema-card-body { padding: 22px; }
+.cinema-card-body h2 { font-size: 1.25rem; font-weight: 800; margin-bottom: 10px; }
+.cinema-address { display: flex; align-items: flex-start; gap: 6px; color: var(--text-muted); font-size: 0.88rem; margin-bottom: 16px; line-height: 1.5; }
+.cinema-rooms { display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; }
+.cinema-room-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; background: rgba(255,255,255,0.04); border-radius: 8px; font-size: 0.85rem; }
+.room-name { display: flex; align-items: center; gap: 6px; font-weight: 600; }
+.room-capacity { color: var(--text-muted); }
+.cinema-total { font-size: 0.85rem; color: var(--text-dim); border-top: 1px solid var(--border-glass); padding-top: 12px; }
+.cinema-total strong { color: var(--gold); }
