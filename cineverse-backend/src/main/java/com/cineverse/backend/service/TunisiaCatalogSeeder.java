@@ -67,31 +67,31 @@ public class TunisiaCatalogSeeder implements CommandLineRunner {
         list.add(cinema("Pathé Tunis City", "Pathé", "Tunis",
                 "Centre Commercial Tunis City, Lac 2, 1053 Tunis",
                 36.8498, 10.2565,
-                "https://images.unsplash.com/photo-1574267432644-f610f5c0a3b0?w=800"));
+                "https://images.unsplash.com/photo-1598899134739-f2c5b08accd8?auto=format&fit=crop&w=900&q=80"));
         list.add(cinema("Pathé Les Berges du Lac", "Pathé", "Tunis",
                 "Les Berges du Lac, 1053 Tunis",
                 36.8322, 10.2425,
-                "https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?w=800"));
+                "https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?auto=format&fit=crop&w=900&q=80"));
         list.add(cinema("Azur City La Marsa", "Azur City", "La Marsa",
                 "Centre Azur City, La Marsa, 2070",
                 36.8780, 10.3242,
-                "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=800"));
+                "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=900&q=80"));
         list.add(cinema("Le Palace Sousse", "Le Palace", "Sousse",
                 "Avenue Habib Bourguiba, 4000 Sousse",
                 35.8256, 10.6360,
-                "https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=800"));
+                "https://images.unsplash.com/photo-1507676180810-ef002b6856a1?auto=format&fit=crop&w=900&q=80"));
         list.add(cinema("Pathé Sfax", "Pathé", "Sfax",
                 "Route de Tunis, Km 0.5, 3000 Sfax",
                 34.7406, 10.7603,
-                "https://images.unsplash.com/photo-1440404653325-ab127d49abc1?w=800"));
+                "https://images.unsplash.com/photo-1522869635100-904f7a5fa963?auto=format&fit=crop&w=900&q=80"));
         list.add(cinema("Colisée Nabeul", "Colisée", "Nabeul",
                 "Avenue Farhat Hached, 8000 Nabeul",
                 36.4561, 10.7376,
-                "https://images.unsplash.com/photo-1524985063818-6c64af0d9570?auto=format&fit=crop&w=800&q=80"));
+                "https://images.unsplash.com/photo-1552832230-c0197dd311b5?auto=format&fit=crop&w=900&q=80"));
         list.add(cinema("Cinéplex Hammamet", "Cinéplex", "Hammamet",
                 "Zone touristique Yasmine, 8050 Hammamet",
                 36.4008, 10.6223,
-                "https://images.unsplash.com/photo-1505683714384-49e9f6f8cd3b?auto=format&fit=crop&w=800&q=80"));
+                "https://images.unsplash.com/photo-1571004348644-fac41007e7f2?auto=format&fit=crop&w=900&q=80"));
         return cinemaRepository.saveAll(list);
     }
 

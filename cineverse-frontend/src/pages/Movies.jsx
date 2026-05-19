@@ -1,15 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { Star, Clock } from 'lucide-react';
+import { Star, Clock, Search } from 'lucide-react';
 import { api } from '../lib/api';
 import MoviePoster from '../components/MoviePoster';
 
-const GENRES = ['Tous', 'Sci-Fi', 'Action', 'Crime', 'Drame', 'Aventure'];
+const GENRES = ['Tous', 'Sci-Fi', 'Action', 'Crime', 'Drame', 'Aventure', 'Sport', 'Documentaire'];
 
 const Movies = () => {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
   const [activeFilter, setActiveFilter] = useState('Tous');
+  const [search, setSearch] = useState('');
 
   useEffect(() => {
     api.getMovies()
@@ -17,14 +18,37 @@ const Movies = () => {
       .catch(() => setLoading(false));
   }, []);
 
-  const filtered = activeFilter === 'Tous'
-    ? movies
-    : movies.filter(m => m.genre?.includes(activeFilter));
+  const filtered = useMemo(() => {
+    let list = movies;
+    if (activeFilter !== 'Tous') {
+      list = list.filter(m => m.genre?.toLowerCase().includes(activeFilter.toLowerCase()));
+    }
+    if (search.trim()) {
+      const q = search.trim().toLowerCase();
+      list = list.filter(m =>
+        m.title?.toLowerCase().includes(q) ||
+        m.director?.toLowerCase().includes(q) ||
+        m.genre?.toLowerCase().includes(q)
+      );
+    }
+    return list;
+  }, [movies, activeFilter, search]);
 
   return (
     <div className="movies-page">
       <h1>Tous les Films</h1>
-      <p style={{ color: 'var(--text-muted)', marginTop: 8 }}>{movies.length} films à l&apos;affiche</p>
+      <p style={{ color: 'var(--text-muted)', marginTop: 8 }}>{filtered.length} film{filtered.length !== 1 ? 's' : ''} trouvé{filtered.length !== 1 ? 's' : ''}</p>
+
+      <div className="movies-search">
+        <Search size={18} />
+        <input
+          type="search"
+          placeholder="Rechercher un film, réalisateur, genre..."
+          value={search}
+          onChange={e => setSearch(e.target.value)}
+        />
+      </div>
+
       <div className="movies-filters">
         {GENRES.map(g => (
           <button
@@ -35,8 +59,11 @@ const Movies = () => {
           >{g}</button>
         ))}
       </div>
+
       {loading ? (
         <div className="page-loader"><div className="loader-ring" /></div>
+      ) : filtered.length === 0 ? (
+        <p style={{ textAlign: 'center', color: 'var(--text-muted)', padding: 60 }}>Aucun film ne correspond à votre recherche.</p>
       ) : (
         <div className="movies-grid">
           {filtered.map(movie => (

@@ -88,18 +88,19 @@ const MovieDetails = () => {
               <button type="button" className="btn-primary" onClick={() => setShowTrailer(true)}>
                 <Play size={18} fill="white" /> Bande-annonce
               </button>
-              {user ? (
-                <button
-                  type="button"
-                  className={`btn-secondary ${inList ? 'btn-watchlist-active' : ''}`}
-                  onClick={() => toggleWatchlist(Number(id))}
-                >
-                  {inList ? <Check size={18} /> : <Plus size={18} />}
-                  {inList ? 'Dans Ma liste' : 'Ma liste'}
-                </button>
-              ) : (
-                <Link to="/login">
-                  <button type="button" className="btn-secondary"><User size={18} /> Connexion</button>
+              <button
+                type="button"
+                className={`btn-secondary ${inList ? 'btn-watchlist-active' : ''}`}
+                onClick={() => toggleWatchlist(Number(id))}
+              >
+                {inList ? <Check size={18} /> : <Plus size={18} />}
+                {inList ? 'Dans Ma liste' : 'Ma liste'}
+              </button>
+              {inList && (
+                <Link to="/mylist">
+                  <button type="button" className="btn-secondary" style={{ borderColor: 'var(--gold)' }}>
+                    Voir ma liste
+                  </button>
                 </Link>
               )}
             </div>
