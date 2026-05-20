@@ -67,7 +67,7 @@ public class TunisiaCatalogSeeder implements CommandLineRunner {
         list.add(cinema("Pathé Tunis City", "Pathé", "Tunis",
                 "Centre Commercial Tunis City, Lac 2, 1053 Tunis",
                 36.8498, 10.2565,
-                "https://images.unsplash.com/photo-1598899134739-f2c5b08accd8?auto=format&fit=crop&w=900&q=80"));
+                "https://picsum.photos/id/312/900/500"));
         list.add(cinema("Pathé Les Berges du Lac", "Pathé", "Tunis",
                 "Les Berges du Lac, 1053 Tunis",
                 36.8322, 10.2425,
@@ -79,11 +79,11 @@ public class TunisiaCatalogSeeder implements CommandLineRunner {
         list.add(cinema("Le Palace Sousse", "Le Palace", "Sousse",
                 "Avenue Habib Bourguiba, 4000 Sousse",
                 35.8256, 10.6360,
-                "https://images.unsplash.com/photo-1507676180810-ef002b6856a1?auto=format&fit=crop&w=900&q=80"));
+                "https://picsum.photos/id/174/900/500"));
         list.add(cinema("Pathé Sfax", "Pathé", "Sfax",
                 "Route de Tunis, Km 0.5, 3000 Sfax",
                 34.7406, 10.7603,
-                "https://images.unsplash.com/photo-1522869635100-904f7a5fa963?auto=format&fit=crop&w=900&q=80"));
+                "https://picsum.photos/id/433/900/500"));
         list.add(cinema("Colisée Nabeul", "Colisée", "Nabeul",
                 "Avenue Farhat Hached, 8000 Nabeul",
                 36.4561, 10.7376,
@@ -91,7 +91,7 @@ public class TunisiaCatalogSeeder implements CommandLineRunner {
         list.add(cinema("Cinéplex Hammamet", "Cinéplex", "Hammamet",
                 "Zone touristique Yasmine, 8050 Hammamet",
                 36.4008, 10.6223,
-                "https://images.unsplash.com/photo-1571004348644-fac41007e7f2?auto=format&fit=crop&w=900&q=80"));
+                "https://picsum.photos/id/1003/900/500"));
         return cinemaRepository.saveAll(list);
     }
 

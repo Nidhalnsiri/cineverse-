@@ -54,6 +54,7 @@ export const api = {
   signup: (body) => apiFetch('/api/auth/signup', { method: 'POST', body: JSON.stringify(body) }),
   createReservation: (body) => apiFetch('/api/reservations', { method: 'POST', body: JSON.stringify(body) }),
   getMyReservations: () => apiFetch('/api/reservations/me'),
+  getSavedCard: () => apiFetch('/api/payment/card'),
 };
 
 export const posterBackdrop = (url) => url?.replace('/w500/', '/original/') ?? '';

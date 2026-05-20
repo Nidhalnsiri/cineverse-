@@ -3,6 +3,7 @@ package com.cineverse.backend.controller;
 import com.cineverse.backend.payload.request.ReservationRequest;
 import com.cineverse.backend.payload.response.ReservationResponse;
 import com.cineverse.backend.security.services.UserDetailsImpl;
+import com.cineverse.backend.service.PaymentCardService;
 import com.cineverse.backend.service.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,13 +18,18 @@ import java.util.List;
 @RequestMapping("/api/reservations")
 public class ReservationController {
     @Autowired ReservationService reservationService;
+    @Autowired PaymentCardService paymentCardService;
 
     @PostMapping
     @PreAuthorize("hasRole('USER')")
     public ResponseEntity<ReservationResponse> createReservation(
             @AuthenticationPrincipal UserDetailsImpl principal,
             @RequestBody ReservationRequest request) {
-        Long userId = principal != null ? principal.getId() : request.getUserId();
+        if (principal == null) {
+            throw new RuntimeException("Connectez-vous pour réserver");
+        }
+        Long userId = principal.getId();
+        paymentCardService.validateAndRegister(userId, request.getPayment());
         ReservationResponse reservation = reservationService.createReservation(
                 userId, request.getSessionId(), request.getSeatIds());
         return ResponseEntity.ok(reservation);

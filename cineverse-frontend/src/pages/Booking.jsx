@@ -3,6 +3,7 @@ import { useParams, useNavigate, Link } from 'react-router-dom';
 import { Armchair, CheckCircle, ArrowLeft, AlertCircle, MapPin, Building2 } from 'lucide-react';
 import { AuthContext } from '../context/AuthContext';
 import { api } from '../lib/api';
+import PaymentModal from '../components/PaymentModal';
 
 const seatLabel = (s) => `${s.rowNum}${s.colNum}`;
 
@@ -14,7 +15,7 @@ const Booking = () => {
   const [seats, setSeats] = useState([]);
   const [selectedIds, setSelectedIds] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [paying, setPaying] = useState(false);
+  const [showPayment, setShowPayment] = useState(false);
   const [confirmed, setConfirmed] = useState(null);
   const [error, setError] = useState('');
   const [occupiedIds, setOccupiedIds] = useState(new Set());
@@ -73,30 +74,30 @@ const Booking = () => {
     return 'seat-available';
   };
 
-  const handlePayment = async () => {
+  const completeReservation = async (payment) => {
     if (!selectedIds.length || !user) return;
-    setPaying(true);
     setError('');
     try {
       const reservation = await api.createReservation({
         sessionId: Number(sessionId),
         seatIds: selectedIds,
+        payment,
       });
+      setShowPayment(false);
       setConfirmed({
-        labels: selectedSeats.map(seatLabel).join(', '),
-        total: reservation.totalPrice ?? total,
-        cinemaName: reservation.cinemaName,
-        cinemaCity: reservation.cinemaCity,
-        cinemaAddress: reservation.cinemaAddress,
-        roomName: reservation.roomName,
-        movieTitle: reservation.movieTitle,
-        sessionDate: reservation.sessionDate,
-        sessionTime: reservation.sessionTime,
+      labels: selectedSeats.map(seatLabel).join(', '),
+      total: reservation.totalPrice ?? total,
+      cinemaName: reservation.cinemaName,
+      cinemaCity: reservation.cinemaCity,
+      cinemaAddress: reservation.cinemaAddress,
+      roomName: reservation.roomName,
+      movieTitle: reservation.movieTitle,
+      sessionDate: reservation.sessionDate,
+      sessionTime: reservation.sessionTime,
       });
     } catch (err) {
       setError(err.message || 'Échec de la réservation.');
-    } finally {
-      setPaying(false);
+      throw err;
     }
   };
 
@@ -198,10 +199,21 @@ const Booking = () => {
             <span>Total</span>
             <span>{total.toFixed(2)} €</span>
           </div>
-          <button type="button" className="pay-btn" onClick={handlePayment} disabled={paying}>
-            {paying ? 'Confirmation...' : `Confirmer · ${total.toFixed(2)} €`}
+          <button type="button" className="pay-btn" onClick={() => setShowPayment(true)}>
+            Confirmer · {total.toFixed(2)} €
           </button>
         </div>
+      )}
+
+      {showPayment && (
+        <PaymentModal
+          key={user?.id}
+          userId={user?.id}
+          total={total}
+          movieTitle={session?.movie?.title ?? 'Votre séance'}
+          onClose={() => setShowPayment(false)}
+          onSuccess={completeReservation}
+        />
       )}
     </div>
   );
