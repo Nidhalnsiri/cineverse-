@@ -37,7 +37,7 @@ const Register = () => {
         <p className="auth-sub">Rejoignez des milliers de cinéphiles</p>
         {error && <div className="auth-error">{error}</div>}
         <form className="auth-form" onSubmit={handleSubmit}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14 }}>
+          <div className="auth-form-row">
             <div className="form-group">
               <label>Prénom</label>
               <input name="firstName" type="text" className="form-input" placeholder="Jean"
